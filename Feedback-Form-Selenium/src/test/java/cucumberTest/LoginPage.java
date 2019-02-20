@@ -29,15 +29,9 @@ public class LoginPage {
 		password.submit();
 	}
 	
-	public String message() {
+	public String reset_password_message() {
 		return reset_pass_message.getText();
 	}
 	
-	//check error message on front end probably using findby, i.e method not needed
-	public boolean validEmail(String email) {
-		
-		email=emailAddress.getText();
-		String[] first_name=email.split(".");
-		return false;
-	}
+
 }
