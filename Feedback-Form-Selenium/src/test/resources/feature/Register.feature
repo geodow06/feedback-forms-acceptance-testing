@@ -6,40 +6,30 @@ So that I can login
 	Scenario: User clicks create account link
 		Given I am on the home page
 		When I click the register link
-		Then I be directed to the reach the register page
+		Then I should be directed to the register page
 	
 	Scenario: New user does not have QA email to create account with
-		Given I am on the register page And I do not have a QA email
-		When I try to register an account
-		Then it should fail
+		Given I am on the register page 
+		When I try to register an account And I do not have a QA email
+		Then I should be notified that the email is invalid
 	
 	Scenario: New user has QA email to create account with
-		Given I am on the register page And I have a QA email
-		When I try to create an account
-		Then it should succeed
+		Given I am on the register page 
+		When I try to create an account And I have a QA email
+		Then  should be notified that the email is valid
 	
 	Scenario: Account already exists
-		Given I am on the register page And I have entered my QA email
-		When I enter my QA email and a valid password
+		Given I am on the register page
+		When I try to create an account And the account already exists
 		Then I should be notified that the account already exists
 	
-	Scenario: Trainer access
-		Given I am on the register page And I have entered a QA trainer email
-		When I login to my account And I go to the home page
-		Then I should see trainer features
-	
-	Scenario: Trainee access
-		Given I am on the register page And I have entered a QA trainee email
-		When I login to my account And I go to the home page
-		Then I should see trainee features
-	
 	Scenario: Secure password creation
-		Given I am on the register page And I have entered my QA email
-		When I enter a secure password
-		Then the account creation should succeed
+		Given I am on the register page
+		When I try to create an account And the password is secure
+		Then I should be notified that the password is valid
 	
 	Scenario: Insecure password creation
-		Given I am on the register page And I have entered my QA email
-		When I enter an insecure password
-		Then the account creation should fail
+		Given I am on the register page
+		When I try to create an account And the password is not secure
+		Then I should be notified that the password is invalid
 	

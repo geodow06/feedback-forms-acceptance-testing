@@ -8,7 +8,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = {"src/test/resources/feature"},
-		glue = {"C:\\Users\\Admin\\git\\feedback-forms-acceptance-testing\\Feedback-Form-Selenium\\src\\test\\java\\cucumber"}, 
+		glue = {"src/test/java/cucmberTest"}, 
+		strict = true,
 		plugin = "html:target/selenium-reports"
 		)
 

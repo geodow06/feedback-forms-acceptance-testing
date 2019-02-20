@@ -13,7 +13,7 @@ Feature: Submit feedback
     When no fields are empty And I click to submit the feedback
     Then I should receive a message saying that the feedback has been successfully submitted
 
-  Scenario: Create feedback access
+  Scenario: User clicks create feedback link
     Given I am logged in
     When I click the create feedback link
     Then the I should be directed to the create feedback page
