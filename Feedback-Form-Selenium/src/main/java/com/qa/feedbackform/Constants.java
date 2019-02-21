@@ -16,4 +16,10 @@ public class Constants {
 	public final static String VIEWTRAINEESURL = BASEURL + "/trainees";
 	public final static String VIEWCOHORTSURL = BASEURL + "/cohorts";
 	public final static String FORMURL = BASEURL + "/form";
+	
+	
+	
+	
+	
+	public static final String FORGOTTENPASSWORDURL = "";
 }

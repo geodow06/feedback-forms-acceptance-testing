@@ -55,7 +55,7 @@ public class LoginStepDefinition {
 	@Then("^I am taken to the login page$")
 	public void i_am_taken_to_the_login_page() throws Throwable {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.LOGINURL);
 		assertEquals("Fail", Constants.LOGINURL, driver.getCurrentUrl());
@@ -63,18 +63,20 @@ public class LoginStepDefinition {
 
 	@When("^I am logged in And I click on the login link$")
 	public void i_am_logged_in_And_I_click_on_the_login_link() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
+		loginpage.userLogin("dummy.email@qa.com", "dummy123");
 	}
 
 	@Then("^I should be directed to the home page$")
 	public void i_should_be_directed_to_the_home_page() throws Throwable {
+		//driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		assertEquals("Home redirection failed", Constants.BASEURL, driver.getCurrentUrl());
 	}
 
 	@Given("^I am on the login page$")
 	public void i_am_on_the_login_page() throws Throwable {
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.LOGINURL);
 	}
@@ -97,20 +99,19 @@ public class LoginStepDefinition {
 
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
 		loginpage.userLogin("John.Doe@academytrainee.com", "password");
-
 	}
 
 	@Then("^I should be directed to my dashboard$")
 	public void i_should_be_directed_to_my_dashboard() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		// Might need to put a wait in here to give it time to redirect
+		//driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		assertEquals("Dashboard redirection failed", Constants.DASHBOARDURL, driver.getCurrentUrl());
 	}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Given("^I am on the forgotten password page$")
 	public void i_am_on_the_forgotten_password_page() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
+		driver.get(Constants.FORGOTTENPASSWORDURL);;
 	}
 
 	// Forgotten password not yet implemented
@@ -137,7 +138,8 @@ public class LoginStepDefinition {
 		// Write code here that turns the phrase above into concrete actions
 		throw new PendingException();
 	}
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@When("^I login to a trainer account$")
 	public void i_login_to_a_trainer_account() throws Throwable {
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
@@ -146,23 +148,27 @@ public class LoginStepDefinition {
 
 	@Then("^I should see trainer features on my dashboard$")
 	public void i_should_see_trainer_features_on_my_dashboard() throws Throwable {
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.DASHBOARDURL);
+		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
+		assertTrue("Trainer features visible", loginpage.trainer_features_visible());
 	}
 
 	@When("^I login to a trainee account$")
 	public void i_login_to_a_trainee_account() throws Throwable {
 
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("The.Trainee@qa.com", "Trainee_pass2");
+		loginpage.userLogin("The.Trainee@academytrainee.com", "Trainee_pass2");
 	}
 
 	@Then("^I should see trainee features on my dashboard$")
 	public void i_should_see_trainee_features_on_my_dashboard() throws Throwable {
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.DASHBOARDURL);
+		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
+		assertTrue("Trainee features visible", loginpage.trainee_features_visible());
 	}
 
 }

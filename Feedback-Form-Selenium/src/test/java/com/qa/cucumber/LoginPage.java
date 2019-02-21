@@ -24,6 +24,12 @@ public class LoginPage {
 	@FindBy(id = "forgotten_password")
 	private WebElement forgot_pass;
 
+	@FindBy(partialLinkText = "Cohorts")
+	private WebElement trainer_link_cohorts;
+	
+	@FindBy(partialLinkText = "Form")
+	private WebElement trainee_link_form;
+	
 	public void clickLogin() {
 		login_link.click();
 	}
@@ -40,6 +46,24 @@ public class LoginPage {
 
 	public String reset_password_message() {
 		return reset_pass_message.getText();
+	}
+	
+	public boolean trainer_features_visible() {
+		if (trainer_link_cohorts.isDisplayed() == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean trainee_features_visible() {
+		if (trainee_link_form.isDisplayed() == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }
