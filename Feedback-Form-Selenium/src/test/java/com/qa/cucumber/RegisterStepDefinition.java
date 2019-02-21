@@ -63,8 +63,7 @@ public class RegisterStepDefinition {
 	@Then("^I should be notified that the email is invalid$")
 	public void i_should_be_notified_that_the_email_is_invalid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Fail", "Email address must be a qa or academytrainee address",
-				registerpage.invalid_email_message());
+		assertEquals("Email is invalid", "invalid", registerpage.email_validity());
 	}
 
 	@When("^I try to create an account And I have a QA email$")
@@ -76,8 +75,7 @@ public class RegisterStepDefinition {
 	@Then("^should be notified that the email is valid$")
 	public void should_be_notified_that_the_email_is_valid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Succeed", "Email address must be a qa or academytrainee address",
-				registerpage.invalid_email_message());
+		assertNotEquals("Email is valid", "valid", registerpage.email_validity());
 	}
 
 	@When("^I try to create an account And the account already exists$")
@@ -101,7 +99,7 @@ public class RegisterStepDefinition {
 	@Then("^I should be notified that the password is valid$")
 	public void i_should_be_notified_that_the_password_is_valid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Fail", "Password is valid", registerpage.invalid_password_message());
+		assertEquals("Password is valid", "valid", registerpage.password_validity());
 	}
 
 	@When("^I try to create an account And the password is not secure$")
@@ -113,7 +111,7 @@ public class RegisterStepDefinition {
 	@Then("^I should be notified that the password is invalid$")
 	public void i_should_be_notified_that_the_password_is_invalid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Fail", "Password between 6 and 18 characters", registerpage.invalid_password_message());
+		assertEquals("Password is invalid", "invalid", registerpage.password_validity());
 	}
 
 }
