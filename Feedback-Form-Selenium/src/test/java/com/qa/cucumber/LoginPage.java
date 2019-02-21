@@ -11,7 +11,7 @@ public class LoginPage {
 	@FindBy(id = "password")
 	private WebElement password;
 
-	@FindBy(xpath = "//*[@id=\"nav-ul\"]/li[7]/a")
+	@FindBy(xpath = "//*[@id=\"nav-ul\"]/li[7]/a") 
 	private WebElement login_link;
 
 	@FindBy()
@@ -31,7 +31,7 @@ public class LoginPage {
 	public void userLogin(String email, String pass) {
 		emailAddress.sendKeys(email);
 		password.sendKeys(pass);
-		password.submit();
+//		password.submit();
 	}
 
 	public String login_status_message() {

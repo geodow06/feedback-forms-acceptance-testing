@@ -20,7 +20,7 @@ public class RegisterStepDefinition {
 
 	@Before
 	public void setup() {
-		System.setProperty("phantomjs.binary.path", Constants.PHANTOMJS);
+		System.setProperty(Constants.PHANTOMDRIVER, Constants.PHANTOMJSLOCATION);
 		driver = new PhantomJSDriver();
 	}
 
