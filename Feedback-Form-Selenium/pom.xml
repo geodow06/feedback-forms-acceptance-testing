@@ -32,6 +32,12 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>1.2.5</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.codeborne/phantomjsdriver -->
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.4.1</version>
+		</dependency>
 
 	</dependencies>
 

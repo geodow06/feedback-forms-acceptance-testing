@@ -1,19 +1,15 @@
 Feature: View Trainee Feedback
-As a trainer 
-I want to be able to view trainee feedback
-So that I can review their progress
+  As a trainer 
+  I want to be able to view trainee feedback
+  So that I can review their progress
 
-	Scenario: Check trainee feedback as trainer
-		Given I am logged in with a trainer account
-		When I visit the view trainee page
-		Then the feedback I entered should be the same as what is submitted
+  Scenario: Click view trainee feedback link
+    Given I am logged in with as a trainer
+    When I click the view trainee feedback link
+    Then the I should be directed to the view trainee feedback page
+    
+  Scenario: Check trainee feedback
+    Given I am logged in with as a trainer
+    When I visit the view trainee page
+    Then I should be able to see feedback
 
-	Scenario: Check feedback access
-		Given I am logged in with a trainer account
-		When I click the view trainees link
-		Then the I should be directed to the view trainees page
-		
-	Scenario: Check feedback render
-		Given I am logged in with a trainer account
-		When I am on my dashboard
-		Then the I should be able to see to the view trainees link

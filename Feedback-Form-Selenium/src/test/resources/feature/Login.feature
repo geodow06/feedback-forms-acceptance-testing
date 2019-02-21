@@ -25,13 +25,13 @@ Feature: Login
 
   Scenario: Forgotten password correct email
     Given I am on the forgotten password page
-    When I enter an email And it is registered
-    Then I should be notified that an email has been sent with reset instructions
+    When I enter a registered email
+    Then password reset link should be sent
 
   Scenario: Forgotten password incorrect email
     Given I am on the forgotten password page
-    When I enter an email And it is not registered
-    Then I should be notified that the email is invalid
+    When I enter an unregistered email
+    Then password reset should fail
 
   Scenario: Dashboard with trainer access
     Given I am on the login page

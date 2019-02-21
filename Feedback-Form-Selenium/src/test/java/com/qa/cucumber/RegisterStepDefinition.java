@@ -1,14 +1,13 @@
-package cucumberTest;
+package com.qa.cucumber;
 
 import static org.junit.Assert.*;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.qa.feedbackform.Constants;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -21,8 +20,8 @@ public class RegisterStepDefinition {
 
 	@Before
 	public void setup() {
-		System.setProperty(Constants.WEBDRIVER, Constants.CHROMEDRIVER);
-		driver = new ChromeDriver();
+		System.setProperty("phantomjs.binary.path", Constants.PHANTOMJS);
+		driver = new PhantomJSDriver();
 	}
 
 	@After
@@ -30,8 +29,8 @@ public class RegisterStepDefinition {
 		driver.quit();
 	}
 
-	@Given("^I am on the home page$")
-	public void i_am_on_the_home_page() throws Throwable {
+	@Given("^I am on the homepage$")
+	public void i_am_on_the_homepage() throws Throwable {
 		driver.get(Constants.BASEURL);
 	}
 
