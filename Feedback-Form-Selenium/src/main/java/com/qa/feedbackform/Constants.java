@@ -4,6 +4,7 @@ public class Constants {
 
 	public final static String CHROMELOCATION = "C:/Users/Admin/Desktop/chromedriver.exe";
 	public final static String CHROMEDRIVER = "webdriver.chrome.driver";
+	public final static String HEADLESSCHROME = "/home/taoheed/Desktop/chromedriver";
 	public final static String PHANTOMJSLOCATION = "src/main/resources/phantomjs.exe";
 	public final static String PHANTOMDRIVER = "phantomjs.binary.path";
 	

@@ -1,7 +1,8 @@
 package com.qa.cucumber;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.qa.feedbackform.Constants;
 
@@ -18,8 +19,11 @@ public class SubmitFeedbackStepDefinition {
 
 	@Before
 	public void setup() {
-		System.setProperty(Constants.PHANTOMDRIVER, Constants.PHANTOMJSLOCATION);
-		driver = new PhantomJSDriver();
+
+		System.setProperty(Constants.CHROMEDRIVER, Constants.HEADLESSCHROME);
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		driver = new ChromeDriver(chromeOptions);
 	}
 
 	@After
