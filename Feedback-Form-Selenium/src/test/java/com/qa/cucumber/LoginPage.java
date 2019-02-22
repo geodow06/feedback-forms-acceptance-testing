@@ -37,7 +37,7 @@ public class LoginPage {
 	public void userLogin(String email, String pass) {
 		emailAddress.sendKeys(email);
 		password.sendKeys(pass);
-//		password.submit();
+		password.submit();
 	}
 
 	public String login_status_message() {
