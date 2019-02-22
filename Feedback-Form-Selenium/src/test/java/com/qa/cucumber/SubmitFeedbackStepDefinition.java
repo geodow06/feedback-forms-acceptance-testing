@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.qa.feedbackform.Constants;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -39,6 +38,9 @@ public class SubmitFeedbackStepDefinition {
 
 	@Given("^I am on the create feedback page$")
 	public void i_am_on_the_create_feedback_page() throws Throwable {
+		driver.get(Constants.BASEURL);
+		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
+		loginpage.userLogin(Constants.TESTTRAINEREMAIL, Constants.GOODPWD);
 		driver.get(Constants.FORMURL);
 	}
 
@@ -51,7 +53,7 @@ public class SubmitFeedbackStepDefinition {
 	@Then("^I should receive a message telling me to fill in all fields$")
 	public void i_should_receive_a_message_telling_me_to_fill_in_all_fields() throws Throwable {
 		SubmitFeedbackPage submitfeedbackpage = PageFactory.initElements(driver, SubmitFeedbackPage.class);
-		assertEquals("Error", "All field need to be filled", submitfeedbackpage.submit_form_message());
+		assertEquals("Error", Constants.FEEDBACKFORMEMPTYFIELDMESSAGE, submitfeedbackpage.submit_form_message());
 	}
 
 	@When("^no fields are empty And I click to submit the feedback$")
@@ -63,20 +65,20 @@ public class SubmitFeedbackStepDefinition {
 	@Then("^I should receive a message saying that the feedback has been successfully submitted$")
 	public void i_should_receive_a_message_saying_that_the_feedback_has_been_successfully_submitted() throws Throwable {
 		SubmitFeedbackPage submitfeedbackpage = PageFactory.initElements(driver, SubmitFeedbackPage.class);
-		assertEquals("Error", "Form has been submitted", submitfeedbackpage.submit_form_message());
+		assertEquals("Error", Constants.FEEDBACKFORMSUCCESSMESSAGE, submitfeedbackpage.submit_form_message());
 	}
 
 	@Given("^I am logged in$")
 	public void i_am_logged_in() throws Throwable {
 		driver.get(Constants.LOGINURL);
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("The.Trainee@academytrainee.com", "Trainee_pass2");
+		loginpage.userLogin(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
 	}
 
 	@When("^I click the create feedback link$")
 	public void i_click_the_create_feedback_link() throws Throwable {
-		SubmitFeedbackPage submitfeedbackpage = PageFactory.initElements(driver, SubmitFeedbackPage.class);
-		submitfeedbackpage.click_form_link();
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		dashboardpage.clickForm();
 	}
 
 	@Then("^the I should be directed to the create feedback page$")
@@ -93,11 +95,12 @@ public class SubmitFeedbackStepDefinition {
 	public void the_I_should_be_able_to_see_the_create_feedback_link() throws Throwable {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.DASHBOARDURL);
-		SubmitFeedbackPage submitfeedbackpage = PageFactory.initElements(driver, SubmitFeedbackPage.class);
-		assertTrue("Form link not visible", submitfeedbackpage.create_feedback_link_visible());
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		assertTrue("Form link not visible", dashboardpage.create_feedback_link_visible());
 	}
 
-	//this whole test thread needs to be changed to coincide with how the webpage works
+	// this whole test thread needs to be changed to coincide with how the webpage
+	// works
 //	@Given("^I am logged out$")
 //	public void i_am_logged_out() throws Throwable {
 //		driver.get(Constants.BASEURL);
@@ -115,21 +118,4 @@ public class SubmitFeedbackStepDefinition {
 //		throw new PendingException();
 //	}
 
-	@Given("^I am logged in with a trainee account And I am on the create feedback page$")
-	public void i_am_logged_in_with_a_trainee_account_And_I_am_on_the_create_feedback_page() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
-	}
-
-	@When("^I create my feedback$")
-	public void i_create_my_feedback() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
-	}
-
-	@Then("^the feedback I entered should be the same as what is submitted$")
-	public void the_feedback_I_entered_should_be_the_same_as_what_is_submitted() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new PendingException();
-	}
 }

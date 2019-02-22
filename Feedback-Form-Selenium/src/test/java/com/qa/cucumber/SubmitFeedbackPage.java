@@ -6,9 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class SubmitFeedbackPage {
 
-	@FindBy(linkText = "Form")
-	private WebElement create_feedback_link;
-	
 	@FindBy(id = "form_message")
 	private WebElement form_message;
 
@@ -42,21 +39,9 @@ public class SubmitFeedbackPage {
 			return false;
 		}
 	}
-	
+
 	public String submit_form_message() {
 		return form_message.getText();
 	}
-	
-	public void click_form_link() {
-		create_feedback_link.click();
-	}
-	
-	public boolean create_feedback_link_visible() {
-		if (create_feedback_link.isDisplayed()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+
 }

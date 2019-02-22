@@ -40,13 +40,13 @@ public class RegisterStepDefinition {
 
 	@When("^I click the register link$")
 	public void i_click_the_register_link() throws Throwable {
-		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		registerpage.clickRegister();
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		dashboardpage.clickRegister();
 	}
 
 	@Then("^I should be directed to the register page$")
 	public void i_should_be_directed_to_the_register_page() throws Throwable {
-		assertEquals("Failed", Constants.REGISTERURL, driver.getCurrentUrl());
+		assertEquals("Registraion page redirection has failed", Constants.REGISTERURL, driver.getCurrentUrl());
 	}
 
 	@Given("^I am on the register page$")
@@ -57,61 +57,61 @@ public class RegisterStepDefinition {
 	@When("^I try to register an account And I do not have a QA email$")
 	public void i_try_to_register_an_account_And_I_do_not_have_a_QA_email() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		registerpage.registerAccount("test_email1.co.uk", "password1!");
+		registerpage.registerAccount(Constants.TESTRANDOMEMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should be notified that the email is invalid$")
 	public void i_should_be_notified_that_the_email_is_invalid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Email is invalid", "invalid", registerpage.email_validity());
+		assertEquals("Email validity check has failed", Constants.REGISTERINVALIDMESSAGE, registerpage.email_validity());
 	}
 
 	@When("^I try to create an account And I have a QA email$")
 	public void i_try_to_create_an_account_And_I_have_a_QA_email() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		registerpage.registerAccount("John.Doe@academytrainee.com", "pass");
+		registerpage.registerAccount(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^should be notified that the email is valid$")
 	public void should_be_notified_that_the_email_is_valid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertNotEquals("Email is valid", "valid", registerpage.email_validity());
+		assertNotEquals("Email validity check has failed", Constants.REGISTERVALIDMESSAGE, registerpage.email_validity());
 	}
 
 	@When("^I try to create an account And the account already exists$")
 	public void i_try_to_create_an_account_And_the_account_already_exists() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		registerpage.registerAccount("John.Doe@academytrainee.com", "pass");
+		registerpage.registerAccount(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should be notified that the account already exists$")
 	public void i_should_be_notified_that_the_account_already_exists() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Fail", "Account already exists", registerpage.register_success_message());
+		assertEquals("Fail", Constants.ACCOUNTALREADYEXISTSMESSAGE, registerpage.register_success_message());
 	}
 
 	@When("^I try to create an account And the password is secure$")
 	public void i_try_to_create_an_account_And_the_password_is_secure() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		registerpage.registerAccount("John.Doe@academytrainee.com", "passWORD123!!!");
+		registerpage.registerAccount(Constants.UNREGISTEREDEMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should be notified that the password is valid$")
 	public void i_should_be_notified_that_the_password_is_valid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Password is valid", "valid", registerpage.password_validity());
+		assertEquals("Password is valid", Constants.REGISTERVALIDMESSAGE, registerpage.password_validity());
 	}
 
 	@When("^I try to create an account And the password is not secure$")
 	public void i_try_to_create_an_account_And_the_password_is_not_secure() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		registerpage.registerAccount("John.Doe@academytrainee.com", "123");
+		registerpage.registerAccount(Constants.UNREGISTEREDEMAIL, Constants.BADPWD);
 	}
 
 	@Then("^I should be notified that the password is invalid$")
 	public void i_should_be_notified_that_the_password_is_invalid() throws Throwable {
 		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
-		assertEquals("Password is invalid", "invalid", registerpage.password_validity());
+		assertEquals("Password is invalid", Constants.REGISTERINVALIDMESSAGE, registerpage.password_validity());
 	}
 
 }

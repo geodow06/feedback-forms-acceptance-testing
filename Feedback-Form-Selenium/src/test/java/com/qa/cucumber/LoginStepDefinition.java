@@ -40,7 +40,6 @@ public class LoginStepDefinition {
 
 	@Given("^I am on the home page$")
 	public void i_am_on_the_home_page() throws InterruptedException {
-		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.BASEURL);
 
@@ -48,35 +47,32 @@ public class LoginStepDefinition {
 
 	@When("^I am not logged in And I click on the login link$")
 	public void i_am_not_logged_in_And_I_click_on_the_login_link() throws Throwable {
-		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.clickLogin();
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		dashboardpage.clickLogin();
 	}
 
 	@Then("^I am taken to the login page$")
 	public void i_am_taken_to_the_login_page() throws Throwable {
-		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.get(Constants.LOGINURL);
-		assertEquals("Fail", Constants.LOGINURL, driver.getCurrentUrl());
+		assertEquals("Login page redirection has failed", Constants.LOGINURL, driver.getCurrentUrl());
 	}
 
 	@When("^I am logged in And I click on the login link$")
 	public void i_am_logged_in_And_I_click_on_the_login_link() throws Throwable {
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("dummy.email@qa.com", "dummy123");
+		loginpage.userLogin(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		dashboardpage.clickLogin();
 	}
 
 	@Then("^I should be directed to the home page$")
 	public void i_should_be_directed_to_the_home_page() throws Throwable {
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		assertEquals("Home redirection failed", Constants.BASEURL, driver.getCurrentUrl());
+		assertEquals("Home redirection has failed", Constants.BASEURL, driver.getCurrentUrl());
 	}
 
 	@Given("^I am on the login page$")
 	public void i_am_on_the_login_page() throws Throwable {
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.LOGINURL);
 	}
@@ -84,28 +80,25 @@ public class LoginStepDefinition {
 	@When("^I submit my login details And I don't have an account$")
 	public void i_submit_my_login_details_And_I_don_t_have_an_account() throws Throwable {
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("DoesNot.Exist@academytrainee.com", "legit1234!");
+		loginpage.userLogin(Constants.UNREGISTEREDEMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should be notified that I need to create an account$")
 	public void i_should_be_notified_that_I_need_to_create_an_account() throws Throwable {
-
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		assertEquals("Error", "Account not found", loginpage.login_status_message());
+		assertEquals("Create account notificication has failed", Constants.ACCOUNTDOESNOTEXISTMESSAGE, loginpage.login_status_message());
 	}
 
 	@When("^I submit my login details And the email is correct And the password is correct$")
 	public void i_submit_my_login_details_And_the_email_is_correct_And_the_password_is_correct() throws Throwable {
-
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("John.Doe@academytrainee.com", "password");
+		loginpage.userLogin(Constants.TESTTRAINEREMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should be directed to my dashboard$")
 	public void i_should_be_directed_to_my_dashboard() throws Throwable {
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		assertEquals("Dashboard redirection failed", Constants.DASHBOARDURL, driver.getCurrentUrl());
+		assertEquals("Dashboard redirection has failed", Constants.DASHBOARDURL, driver.getCurrentUrl());
 	}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,32 +136,28 @@ public class LoginStepDefinition {
 	@When("^I login to a trainer account$")
 	public void i_login_to_a_trainer_account() throws Throwable {
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("The.Trainer@qa.com", "Trainer_pass1");
+		loginpage.userLogin(Constants.TESTTRAINEREMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should see trainer features on my dashboard$")
 	public void i_should_see_trainer_features_on_my_dashboard() throws Throwable {
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.DASHBOARDURL);
-		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		assertTrue("Trainer features visible", loginpage.trainer_features_visible());
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		assertTrue("Trainer features aren't visible", dashboardpage.trainer_features_visible());
 	}
 
 	@When("^I login to a trainee account$")
 	public void i_login_to_a_trainee_account() throws Throwable {
-
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin("The.Trainee@academytrainee.com", "Trainee_pass2");
+		loginpage.userLogin(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
 	}
 
 	@Then("^I should see trainee features on my dashboard$")
 	public void i_should_see_trainee_features_on_my_dashboard() throws Throwable {
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(Constants.DASHBOARDURL);
-		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		assertTrue("Trainee features visible", loginpage.trainee_features_visible());
+		DashboardPage dashboardpage = PageFactory.initElements(driver, DashboardPage.class);
+		assertTrue("Trainee features aren't visible", dashboardpage.trainee_features_visible());
 	}
-
 }
