@@ -8,9 +8,9 @@ Feature: Login
     When I am not logged in And I click on the login link
     Then I am taken to the login page
 
-  Scenario: User clicks login link while logged in
+  Scenario: User clicks logout link while logged in
     Given I am on the home page
-    When I am logged in And I click on the login link
+    When I am logged in And I click on the logout link
     Then I should be directed to the home page
 
   Scenario: Login without account

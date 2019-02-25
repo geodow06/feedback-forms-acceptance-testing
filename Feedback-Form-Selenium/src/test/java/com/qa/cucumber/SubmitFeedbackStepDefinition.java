@@ -38,9 +38,11 @@ public class SubmitFeedbackStepDefinition {
 
 	@Given("^I am on the create feedback page$")
 	public void i_am_on_the_create_feedback_page() throws Throwable {
-		driver.get(Constants.BASEURL);
+		driver.get(Constants.LOGINURL);
+		RegisterPage registerpage = PageFactory.initElements(driver, RegisterPage.class);
+		registerpage.registerAccount(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
 		LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-		loginpage.userLogin(Constants.TESTTRAINEREMAIL, Constants.GOODPWD);
+		loginpage.userLogin(Constants.TESTTRAINEEEMAIL, Constants.GOODPWD);
 		driver.get(Constants.FORMURL);
 	}
 

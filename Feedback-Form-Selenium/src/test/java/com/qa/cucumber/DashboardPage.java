@@ -5,8 +5,14 @@ import org.openqa.selenium.support.FindBy;
 
 public class DashboardPage {
 
+	@FindBy (linkText = "Home")
+	private WebElement home_link;
+	
 	@FindBy(linkText = "Login")
 	private WebElement login_link;
+	
+	@FindBy(linkText = "Logout")
+	private WebElement logout_link;
 
 	@FindBy(linkText = "Register")
 	private WebElement register_link;
@@ -22,6 +28,10 @@ public class DashboardPage {
 
 	public void clickLogin() {
 		login_link.click();
+	}
+	
+	public void clickLogout() {
+		logout_link.click();
 	}
 
 	public void clickRegister() {
@@ -41,7 +51,7 @@ public class DashboardPage {
 	}
 	
 	public boolean trainer_features_visible() {
-		if (cohorts_link.isDisplayed() == true) {
+		if (cohorts_link.isDisplayed()) {
 			return true;
 		}
 		else {
@@ -50,7 +60,7 @@ public class DashboardPage {
 	}
 	
 	public boolean trainee_features_visible() {
-		if (form_link.isDisplayed() == true) {
+		if (form_link.isDisplayed()) {
 			return true;
 		}
 		else {

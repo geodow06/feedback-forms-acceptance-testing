@@ -14,10 +14,10 @@ public class RegisterPage {
 	@FindBy(xpath = "//*[@id=\"nav-ul\"]/li[5]/a")
 	private WebElement register_link;
 
-	@FindBy(xpath = "//*[@id=\"main-content\"]/div/div/div/form/div[2]/div[2]/p")
+	@FindBy(xpath = "//*[@id=\"main-content\"]/div/div/div/form/div[3]/div[2]/p")
 	private WebElement email_response;
 
-	@FindBy(xpath = "//*[@id=\"main-content\"]/div/div/div/form/div[3]/div[2]/p")
+	@FindBy(xpath = "//*[@id=\"main-content\"]/div/div/div/form/div[4]/div[2]/p")
 	private WebElement password_response;
 
 	@FindBy(id = "error-message")
@@ -29,15 +29,13 @@ public class RegisterPage {
 		password.submit();
 	}
 
-	public void clickRegister() {
-		register_link.click();
-	}
-
 	public String email_validity() {
-		if (email_response.getText().contains("valid")) {
+		if (email_response.getAttribute("class") == "good-response") {
 			return "valid";
-		} else {
+		} else if (email_response.getAttribute("class") == "bad-response") {
 			return "invalid";
+		} else {
+			return null;
 		}
 	}
 

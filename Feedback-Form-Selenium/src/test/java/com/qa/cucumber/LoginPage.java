@@ -10,8 +10,11 @@ public class LoginPage {
 
 	@FindBy(id = "password")
 	private WebElement password;
+	
+	@FindBy(id="login-button")
+	private WebElement login_button;
 
-	@FindBy()
+	@FindBy(id = "error-message")
 	private WebElement login_status;
 	// reset password message
 	@FindBy(id = "")
@@ -24,13 +27,20 @@ public class LoginPage {
 	public void userLogin(String email, String pass) {
 		emailAddress.sendKeys(email);
 		password.sendKeys(pass);
-		password.submit();
+		login_button.click();
 	}
 
+	public boolean login_successful() {
+		if (login_status.getText().contains("invalid")) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 	public String login_status_message() {
 		return login_status.getText();
 	}
-
 	public String reset_password_message() {
 		return reset_pass_message.getText();
 	}

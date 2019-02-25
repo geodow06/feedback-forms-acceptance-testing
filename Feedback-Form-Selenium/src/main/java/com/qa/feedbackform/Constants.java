@@ -4,7 +4,7 @@ public class Constants {
 
 	public final static String CHROMELOCATION = "C:/Users/Admin/Desktop/chromedriver.exe";
 	public final static String CHROMEDRIVER = "webdriver.chrome.driver";
-	public final static String HEADLESSCHROME = "/home/taoheed/Desktop/chromedriver";
+	public final static String HEADLESSCHROME = "/Users/Taoheed/Desktop/chromedriver";
 
 	
 	public final static String BASEURL = "https://feedback.ukwest.cloudapp.azure.com";
@@ -16,7 +16,9 @@ public class Constants {
 	public final static String VIEWCOHORTSURL = BASEURL + "/cohorts";
 	public final static String FORMURL = BASEURL + "/form";
 	
-	
+	public final static String LOGINTESTTRAINEEEMAIL = "Tao.Afo@academytrainee.com";
+	public final static String LOGINTESTTRAINEREMAIL = "The.Trainer@qa.com";
+	public final static String LOGINTESTPASSWORD = "password";
 	public final static String TESTTRAINEREMAIL = "Test.Trainer@qa.com";
 	public final static String TESTTRAINEEEMAIL = "Test.Trainee@academytrainee.com";
 	public final static String UNREGISTEREDEMAIL = "DoesNot.Exist@academytrainee.com";
