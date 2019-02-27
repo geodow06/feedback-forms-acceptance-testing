@@ -4,7 +4,7 @@ public class Constants {
 
 	public final static String CHROMELOCATION = "C:/Users/Admin/Desktop/chromedriver.exe";
 	public final static String CHROMEDRIVER = "webdriver.chrome.driver";
-	public final static String HEADLESSCHROME = "C:/Users/Admin/Desktop/chromedriver.exe";
+	public final static String HEADLESSCHROME = "src/main/resources/chromedriver";
 
 	
 	public final static String BASEURL = "https://feedback.ukwest.cloudapp.azure.com";
